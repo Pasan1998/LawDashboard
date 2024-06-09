@@ -6,7 +6,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="<?= SYSTEM_PATH_BACKEND ?>index.php" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -75,7 +75,7 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
             <li class="menu-item active">
-              <a href="index.html" class="menu-link">
+              <a href="<?= SYSTEM_PATH_BACKEND ?>index.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
@@ -114,7 +114,7 @@
                 </li>
                 <li class="menu-item">
                 <a href="<?= SYSTEM_PATH_BACKEND?>Inquiry/Processing.php" class="menu-link">
-                    <div data-i18n="Fluid">Porcessing Inquiries</div>
+                    <div data-i18n="Fluid">Processing Inquiries</div>
                   </a>
                 </li>
                 <li class="menu-item">
