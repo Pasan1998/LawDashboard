@@ -54,7 +54,34 @@ include '../function.php';
     <div class="col-12 mb-4">
       <!-- Basic Bootstrap Table -->
       <div class="card">
-                <h5 class="card-header">Table Basic</h5>
+      <?php
+
+           $statusofInquiry = 1;
+
+          if ($statusofInquiry == 1) {
+            $tablehead = 'Not Process';
+          } elseif ($statusofInquiry == 2) {
+            $tablehead = 'Contacted';
+          } elseif ($statusofInquiry == 3) {
+            $tablehead = 'Contacted & Not happening';
+          } elseif ($statusofInquiry == 4) {
+            $tablehead = 'Processing';
+          } elseif ($statusofInquiry == 5) {
+            $tablehead = 'Rejected';
+          } elseif ($statusofInquiry == 6) {
+            $tablehead = 'Cancelled';
+          } elseif ($statusofInquiry == 7) {
+            $tablehead = 'Completed';
+          } else {
+            $tablehead = 'Unknown Status'; // Optional: handle unexpected statuses
+          }
+
+
+
+          ?>
+
+
+          <h5 class="card-header">Table Basic  <button class="btn btn-info"> <?php echo  $tablehead ?> </button></h5>
                 <div class="table-responsive text-nowrap">
                   <table class="table">
                     <thead>
@@ -62,12 +89,12 @@ include '../function.php';
                       <th>#</th>
                         <th>Client Name</th>
                         <th>Client Mobile</th>
-                        <th>Client Email</th>
+                  
                         <th>Practice Area</th>
                         <th>Message</th>
                         <th>Submitted Date</th>
                         <th>Inquiry Status</th>
-                        
+                        <th>Change Status</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -90,7 +117,7 @@ include '../function.php';
                         <td>
                         <?= $rowInquiries['ClientMobile']  ?>
                         </td>
-                        <td><span class="badge bg-label-primary me-1"><?= $rowInquiries['ClientEmail']  ?></span></td>
+                       
                         <td>
                         <?php
                         
@@ -113,34 +140,54 @@ include '../function.php';
                         <?= $rowInquiries['Loggeddate']  ?>
                         </td>
                         <td>
-                        <?php $status=$rowInquiries['InquiresState'];
-                        
-                        if ($status == 1){?>
-                        <div class="alert alert-warning" role="alert">
- Not Process
-</div><?php }elseif ($status == 2){?>
-    <div class="alert alert-primary" role="alert">
-  Contacted
-</div><?php }elseif($status == 3 ){?>
-    <div class="alert alert-dark" role="alert">
- Contacted & Not happening
-</div><?php }elseif($status == 4){?>
-    <div class="alert alert-success" role="alert">
-  Processing
-</div><?php }else if($status == 5){?>
-    <div class="alert alert-danger" role="alert">
- Rejected
-</div><?php }else {?>
-   <div class="alert alert-danger" role="alert">
- Cancelled
-</div> <?php
-}
+                        <?php $status = $rowInquiries['InquiresState'];
 
+                        if ($status == 1) { ?>
+                          <div class="alert alert-warning" role="alert">
+                            Not Process
+                          </div><?php } elseif ($status == 2) { ?>
+                          <div class="alert alert-primary" role="alert">
+                            Contacted
+                          </div><?php } elseif ($status == 3) { ?>
+                          <div class="alert alert-dark" role="alert">
+                            Contacted & Not happening
+                          </div><?php } elseif ($status == 4) { ?>
+                          <div class="alert alert-success" role="alert">
+                            Processing
+                          </div><?php } else if ($status == 5) { ?>
+                            <div class="alert alert-danger" role="alert">
+                              Rejected
+                            </div><?php } else if  ($status == 6)  { ?>
+                            <div class="alert alert-danger" role="alert">
+                              Cancelled
+                            </div> <?php
+                        }else if  ($status == 7)  { ?>
+                           <div class="alert alert-success" role="alert">
+                              Completed
+                            </div> <?php }
 
-                            
-                        
                         ?>
+                      </td>
+
+                        <td>
+                        <form method="post" action="inquirystatus.php">
+                          <input type="hidden" name="InquiriesID" value="<?= $rowInquiries['InquiriesID'] ?>">
+                          <div class="mb-3">
+                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" name="change_status">
+                              <option selected>Change Status</option>
+                              <option value="1"> Not Process</option>
+                              <option value="2">Contacted</option>
+                              <option value="3">Contacted & Not happening</option>
+                              <option value="4">Processing</option>
+                              <option value="5">Rejected</option>
+                              <option value="6">Cancelled</option>
+                              <option value="7">Completed</option>
+                            </select>
+                          </div>
+                          <button class="btn btn-info" type="submit" value="statuschange" name="action" > Change</button>
+                        </form>
                         </td>
+
                       </tr>
                      <?php 
                       $i++;

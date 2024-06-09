@@ -114,7 +114,7 @@
                 </li>
                 <li class="menu-item">
                 <a href="<?= SYSTEM_PATH_BACKEND?>Inquiry/Processing.php" class="menu-link">
-                    <div data-i18n="Fluid">Porcessing Inquiries</div>
+                    <div data-i18n="Fluid">Processing Inquiries</div>
                   </a>
                 </li>
                 <li class="menu-item">
